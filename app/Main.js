@@ -1,45 +1,33 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react'
 
 import {
-	View,
-	Text,
-	TouchableOpacity
-} from 'react-native';
+    StyleSheet,
+    View
+} from 'react-native'
 
-var api = require("./api");
+import TabBarComp from './TabBar'
+import NavbarComp from './NavBar'
 
-class Main extends Component {
-	_openPage() {
-		api.getShotsByType('string', 1)
-      .catch((error) => {
+export default class IndexView extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
 
-      })
-      .then((responseData) => {
-				console.log('111111111');
-				console.log(responseData);
-      }).done();
-
-			api.getResources('https://api.dribbble.com/v1/users/566203/shots')
-			.catch((error) => {
-
-      })
-			.then((responseData) => {
-				console.log('2222222222');
-				console.log(responseData);
-    }).done();
-
-	}
-
-	render() {
-		return (
-			<View style={{ flex: 1, alignItems: 'center', backgroundColor: '#FFFFFF' }}>
-				<Text>Splash Page</Text>
-				<TouchableOpacity onPress={this._openPage.bind(this)}>
-					<Text style={{ color: '#55ACEE' }}>Open New Page</Text>
-				</TouchableOpacity>
-			</View>
-		);
-	}
+		render() {
+        return (
+            <View style={styles.container}>
+                <NavbarComp route={this.props.route} navigator={this.props.navigator}/>
+                <TabBarComp navigator={this.props.navigator}/>
+            </View>
+        )
+    }
 }
 
-export default Main;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
