@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import TabNavigator from 'react-native-tab-navigator'
+import Icon from 'react-native-vector-icons/FontAwesome';
 import IconfontConf from './iconfontConf'
 import styleUtils from './Styles'
 
@@ -59,8 +60,13 @@ export default class TabBarComp extends Component {
 
     _renderTabItemIcon(tag, selected = false) {
         tag = selected ? tag + 'Selected' : tag
+        if (selected) {
+          return (
+            <Icon name="dribbble" size={30} color="#ff9630" />
+          )
+        }
         return (
-            <Text style={[styles.tabIcon, selected ? styles.selectedTabIcon : {}]}>{IconfontConf('uni' + tabIconfont[tag])}</Text>
+          <Icon name="dribbble" size={30} color="#929292" />
         )
     }
 }

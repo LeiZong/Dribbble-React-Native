@@ -9,19 +9,37 @@ function fetchData(URL) {
       "Authorization": "Bearer " + ACCESS_TOKEN
     }
   }).then((response) => response.json())
-}
+};
 
-module.exports = {
-  getShotsByType: function(type: string, pageNumber: ?number): ?Object {
-    var URL = API_PATH + "shots/?list=" + type;
-    if (pageNumber) {
-      URL += "&per_page=10&page=" + pageNumber;
-    }
+function getShotsByType(type: string, pageNumber: ?number): ?Object {
+  let URL = API_PATH + "shots/?list=" + type;
 
-    return fetchData(URL);
-  },
-
-  getResources: function(url: ?string): ?Object {
-    return fetchData(url);
+  if (pageNumber) {
+    URL += "&per_page=10&page=" + pageNumber;
   }
+
+  return fetchData(URL);
+};
+
+function fetDefaultShots(pageNumber: ?number): ?Object {
+  return getShotsByType('Defaule', pageNumber);
+};
+
+function fetDebutsShots(pageNumber: ?number): ?Object {
+  return getShotsByType('debuts', pageNumber);
+};
+
+function fetTeamsShots(pageNumber: ?number): ?Object {
+  return getShotsByType('teams', pageNumber);
+};
+
+function getResources(url: ?string): ?Object {
+  return fetchData(url);
+};
+
+export {
+  fetDefaultShots,
+  fetDebutsShots,
+  fetTeamsShots,
+  getResources,
 };
