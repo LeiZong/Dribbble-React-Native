@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 
 var GiftedListView = require('react-native-gifted-listview');
-import {fetDefaultShots} from './api.js'
+import {fetDefaultShots, fetDebutsShots} from './api.js'
 
 export default class HomeView extends Component {
     constructor(props) {
@@ -73,7 +73,7 @@ export default class HomeView extends Component {
       //       </TouchableHighlight>
       //     </View>
       //   )
-      let color = Platform.OS === 'android' ? styleUtils.androidSpinnerColor : 'gray'
+      let color = 'gray'
         return (
             <GiftedListView
                 enableEmptySections={true}
@@ -98,13 +98,34 @@ export default class HomeView extends Component {
         original_pic: "",
         text: "Sometimes the hardest part isn't letting go, but rather, learning to start over.",
       };
-            if(page === 1 && options.firstLoad) {
-              callback(info)
-            } else if(page === 1 && !options.firstLoad) {
-              callback(info)
-            } else {
-              callback(info)
-            }
+            // if(page === 1 && options.firstLoad) {
+            //   callback(info)
+            // } else if(page === 1 && !options.firstLoad) {
+            //   callback(info)
+            // } else {
+            //   callback(info)
+            // }
+      if(page === 1 && options.firstLoad) {
+        callback([info, info, info, info, info])
+      } else if (page === 1 && !options.firstLoad) {
+        callback([info, info, info, info, info])
+      } else {
+        callback([info, info, info, info, info], {
+                        allLoaded: true
+                    })
+      }
+      // if (page === 3) {
+      //   callback(info, {allLoaded: true})
+      // } else {
+      //   console.log('refresh');
+      //   fetDebutsShots(page).catch((error) => {
+      //   })
+      //   .then((responseData) => {
+      //     console.log(responseData);
+      //     console.log(page);
+      //     callback(info, {allLoaded: false});
+      //   }).done();
+      // }
    }
 
    _renderRowView(info) {
