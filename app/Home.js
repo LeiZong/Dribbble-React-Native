@@ -105,6 +105,22 @@ export default class HomeView extends Component {
             // } else {
             //   callback(info)
             // }
+      fetDefaultShots(page).catch((error) => {
+      })
+      .then((responseData) => {
+        console.log(responseData);
+        console.log('name == ' + responseData[0].user.name);
+        console.log('avatar_url == ' + responseData[0].user.avatar_url);
+        console.log("title == " + responseData[0].title);
+        console.log('description == ' + responseData[0].description);
+        console.log('animated == ' + responseData[0].animated);
+        console.log('normal == ' + responseData[0].images.normal);
+        console.log('teaser == ' + responseData[0].images.teaser);
+        console.log('views_count == ' + responseData[0].views_count);
+        console.log('comment_count == ' + responseData[0].comment_count);
+        console.log('likes_count == ' + responseData[0].likes_count);
+      }).done();
+
       if(page === 1 && options.firstLoad) {
         callback([info, info, info, info, info])
       } else if (page === 1 && !options.firstLoad) {
