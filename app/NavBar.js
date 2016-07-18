@@ -52,7 +52,7 @@ function _renderBarButton(text, handler, icon = false, buttonStyle = {}, buttonT
         <TouchableOpacity
             onPress={handler}
             style={[styles.button, buttonStyle]}>
-            <Text style={buttonText}>{text}</Text>
+            <Text style={buttonText}>{'<'}</Text>
         </TouchableOpacity>
     )
 }

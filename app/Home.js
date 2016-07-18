@@ -46,51 +46,59 @@ export default class HomeView extends Component {
       }).done();
    }
 
-    _renderRowView(info) {
+    _renderRowView(shot) {
          return (
-                 <TouchableHighlight underlayColor='transparent' onPress={this._gotoDetails.bind(this, info)}>
-                     <View style={styles.tweetContainer}>
-                         <View style={styles.topContainer}>
-                             <Image source={{uri: info.user.avatar_url}}
-                             style={styles.avatar} />
-                             <View style={{justifyContent: 'center'}}>
-                                 <Text style={styles.name}>{info.user.name}</Text>
-                             </View>
-                         </View>
-                         <View style={styles.middleContainer}>
-                             <Image source={{uri: info.images.normal}}
-                             style={{height: info.height}}/>
-                         </View>
-                         <View style={styles.bottomContainer}>
-                                 <View style={[styles.bottomCell, styles.bottomTool]}>
-                                     <Image style={{resizeMode: 'cover'}}
-                                     source={require('../img/visibility_grey.png')} />
-                                     <Text style={styles.bottomToolText}>{' ' + info.views_count}</Text>
-                                 </View>
-                                 <View style={[styles.bottomCell, styles.bottomTool]}>
-                                     <Image style={{resizeMode: 'cover'}}
-                                     source={require('../img/message_grey.png')} />
-                                     <Text style={styles.bottomToolText}>{' ' + info.comments_count}</Text>
-                                 </View>
-                                 <View style={[styles.bottomCell, styles.bottomTool]}>
-                                     <Image style={{resizeMode: 'cover'}}
-                                     source={require('../img/favorite_grey.png')} />
-                                     <Text style={styles.bottomToolText}>{' ' + info.likes_count}</Text>
-                                 </View>
-                         </View>
-                     </View>
-                 </TouchableHighlight>
+           <TouchableHighlight underlayColor='transparent' onPress={this._gotoDetails.bind(this, shot)}>
+               <View style={styles.tweetContainer}>
+                   <View style={styles.topContainer}>
+                       <Image source={{uri: shot.user.avatar_url}}
+                       style={styles.avatar} />
+                       <View style={{justifyContent: 'center'}}>
+                           <Text style={styles.name}>{shot.user.name}</Text>
+                       </View>
+                   </View>
+                   <View style={styles.middleContainer}>
+                       <Image source={{uri: shot.images.normal}}
+                       style={{height: shot.height}}/>
+                   </View>
+                   <View style={styles.bottomContainer}>
+                           <View style={[styles.bottomCell, styles.bottomTool]}>
+                               <Image style={{resizeMode: 'cover'}}
+                               source={require('../img/visibility_grey.png')} />
+                               <Text style={styles.bottomToolText}>{' ' + shot.views_count}</Text>
+                           </View>
+                           <View style={[styles.bottomCell, styles.bottomTool]}>
+                               <Image style={{resizeMode: 'cover'}}
+                               source={require('../img/message_grey.png')} />
+                               <Text style={styles.bottomToolText}>{' ' + shot.comments_count}</Text>
+                           </View>
+                           <View style={[styles.bottomCell, styles.bottomTool]}>
+                               <Image style={{resizeMode: 'cover'}}
+                               source={require('../img/favorite_grey.png')} />
+                               <Text style={styles.bottomToolText}>{' ' + shot.likes_count}</Text>
+                           </View>
+                   </View>
+               </View>
+           </TouchableHighlight>
          )
      }
 
-    _gotoDetails(tweet) {
+    _gotoDetails(shot) {
       console.log('goto detail');
+      console.log(this.props.navigator);
+      this.props.navigator.push({
+            title: 'Shot',
+            id: 'ShotDetail',
+            params: {
+                shot: shot
+            }
+        })
     }
 }
 
 const listStyles = {
   paginationView: {
-    backgroundColor: '#eee',
+    backgroundColor: '#eee'
   },
   url: {
     color: '#007aff'

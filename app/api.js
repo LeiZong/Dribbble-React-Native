@@ -15,7 +15,7 @@ function getShotsByType(type: string, pageNumber: ?number): ?Object {
   let URL = API_PATH + "shots/?list=" + type;
 
   if (pageNumber) {
-    URL += "&per_page=10&page=" + pageNumber;
+    URL += "&per_page=5&page=" + pageNumber;
   }
 
   return fetchData(URL);
