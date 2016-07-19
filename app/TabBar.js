@@ -9,21 +9,11 @@ import {
 
 import TabNavigator from 'react-native-tab-navigator'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import IconfontConf from './iconfontConf'
 import styleUtils from './Styles'
 
 import HomeView from './Home'
 import SettingsView from './Settings'
 import ContactsView from './Contacts'
-
-const tabIconfont = {
-    Home: 'E613',
-    Contacts: 'E60D',
-    Settings: 'E610',
-    HomeSelected: 'E602',
-    ContactsSelected: 'E614',
-    SettingsSelected: 'E60F'
-}
 
 export default class TabBarComp extends Component {
     constructor(props) {
