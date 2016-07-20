@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 
+import {fetchResources} from './api.js'
 var GiftedListView = require('react-native-gifted-listview');
 
 export default class BaseListView extends Component {
@@ -33,20 +34,28 @@ export default class BaseListView extends Component {
 
   _renderRowView(shot) {
        return (
-         <TouchableHighlight underlayColor='transparent' onPress={this._gotoDetails.bind(this, shot)}>
              <View style={styles.tweetContainer}>
+                 <TouchableHighlight underlayColor='transparent' onPress={this._gotoUserDetails.bind(this, shot)}>
                  <View style={styles.topContainer}>
-                     <Image source={{uri: shot.user.avatar_url}}
-                     style={styles.avatar} />
-                     <View style={{justifyContent: 'center'}}>
-                         <Text style={styles.name}>{shot.user.name}</Text>
-                     </View>
+                 {shot.team === null ? <Image source={{uri: shot.user.avatar_url}}
+                 style={styles.avatar} /> : <Image source={{uri: shot.team.avatar_url}}
+                 style={styles.avatar} />}
+                 {shot.team === null ?
+                   <View style={{justifyContent: 'center'}}>
+                     <Text style={styles.name}>{shot.user.name}</Text>
+                 </View> :
+                 <View style={{justifyContent: 'center'}}>
+                     <Text style={styles.name}>{shot.team.name + ' - Team'}</Text>
+                 </View>}
                  </View>
+                 </TouchableHighlight>
+                 <TouchableHighlight underlayColor='transparent' onPress={this._gotoShotDetails.bind(this, shot)}>
                  <View style={styles.middleContainer}>
                      <Image defaultSource={require('../img/dribbble_placeholder.png')}
                      source={{uri: shot.images.normal}}
                      style={{height: shot.height}}/>
                  </View>
+                 </TouchableHighlight>
                  <View style={styles.bottomContainer}>
                          <View style={[styles.bottomCell, styles.bottomTool]}>
                              <Image style={{resizeMode: 'cover'}}
@@ -65,11 +74,10 @@ export default class BaseListView extends Component {
                          </View>
                  </View>
              </View>
-         </TouchableHighlight>
        )
    }
 
-  _gotoDetails(shot) {
+  _gotoShotDetails(shot) {
     this.props.navigator.push({
           title: 'Shot',
           id: 'ShotDetail',
@@ -77,6 +85,14 @@ export default class BaseListView extends Component {
               shot: shot
           }
       })
+  }
+
+  _gotoUserDetails(shot) {
+    fetchResources(shot.user.shots_url).catch((error) => {
+    })
+    .then((responseData) => {
+      console.log(responseData);
+    }).done();
   }
 }
 

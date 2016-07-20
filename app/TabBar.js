@@ -11,24 +11,24 @@ import TabNavigator from 'react-native-tab-navigator'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styleUtils from './Styles'
 
-import HomeView from './Home'
-import SettingsView from './Settings'
-import ContactsView from './Contacts'
+import DefaultShots from './DefaultShotsView'
+import DebutsShots from './DebutsShotsView'
+import AnimatedShots from './AnimatedShotsView'
 
 export default class TabBarComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedTab: 'Home'
+            selectedTab: 'Default'
         }
     }
 
     render() {
         return (
             <TabNavigator hidesTabTouch={true} sceneStyle={styles.sceneStyle}>
-                {this._renderTabItem('Home', <HomeView navigator={this.props.navigator}/>)}
-                {this._renderTabItem('Contacts', <ContactsView navigator={this.props.navigator}/>)}
-                {this._renderTabItem('Settings', <SettingsView navigator={this.props.navigator}/>)}
+                {this._renderTabItem('Default', <DefaultShots navigator={this.props.navigator}/>)}
+                {this._renderTabItem('Animated', <AnimatedShots navigator={this.props.navigator}/>)}
+                {this._renderTabItem('Debuts', <DebutsShots navigator={this.props.navigator}/>)}
             </TabNavigator>
         )
     }
