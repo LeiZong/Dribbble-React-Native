@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 
 import MainView from './app/Main'
+import ShotDetail from './app/ShotDetail'
 
 export default class NavigatorComp extends Component {
   render() {
@@ -30,6 +31,10 @@ export default class NavigatorComp extends Component {
           return (
               <MainView navigator={navigator} route={route}/>
           )
+      case 'ShotDetail':
+          return (
+                <ShotDetail {...route.params} navigator={navigator} route={route}/>
+            )
       // case 'about':
       //     return (
       //         <AboutView navigator={navigator} route={route}/>

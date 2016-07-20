@@ -21,25 +21,30 @@ function getShotsByType(type: string, pageNumber: ?number): ?Object {
   return fetchData(URL);
 };
 
-function fetDefaultShots(pageNumber: ?number): ?Object {
+function fetchDefaultShots(pageNumber: ?number): ?Object {
   return getShotsByType('Defaule', pageNumber);
 };
 
-function fetDebutsShots(pageNumber: ?number): ?Object {
+function fetchDebutsShots(pageNumber: ?number): ?Object {
   return getShotsByType('debuts', pageNumber);
 };
 
-function fetTeamsShots(pageNumber: ?number): ?Object {
+function fetchTeamsShots(pageNumber: ?number): ?Object {
   return getShotsByType('teams', pageNumber);
 };
 
-function getResources(url: ?string): ?Object {
+function fetchGifShots(pageNumber: ?number): ?Object {
+  return getShotsByType('animated', pageNumber);
+};
+
+function fetchResources(url: ?string): ?Object {
   return fetchData(url);
 };
 
 export {
-  fetDefaultShots,
-  fetDebutsShots,
-  fetTeamsShots,
-  getResources,
+  fetchDefaultShots,
+  fetchDebutsShots,
+  fetchTeamsShots,
+  fetchGifShots,
+  fetchResources,
 };
