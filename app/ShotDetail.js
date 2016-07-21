@@ -1,14 +1,14 @@
-import React, {
-    Component
-} from 'react'
+import React, {Component} from 'react'
 
 import {
     StyleSheet,
     View,
-    Text
+    Text,
 } from 'react-native'
 
 import NavbarComp from './NavBar'
+var ParallaxView = require('react-native-parallax-view');
+var HTMLView = require('react-native-htmlview');
 
 export default class ShotDetail extends Component {
   constructor(props) {
@@ -19,15 +19,19 @@ export default class ShotDetail extends Component {
       return (
         <View style={styles.container}>
         <NavbarComp route={this.props.route} navigator={this.props.navigator}/>
-          <Text style={styles.welcome}>
-            Welcome to SettingsView!
-          </Text>
-          <Text style={styles.instructions}>
-            To get started, edit SettingsView
-          </Text>
-          <Text style={styles.instructions}>
-            SettingsView SettingsView SettingsView
-          </Text>
+        <ParallaxView
+             backgroundSource={{ uri: this.props.shot.images.normal }}
+             windowHeight={this.props.shot.height}>
+           <View style={styles.loremBody}>
+             <Text style={styles.titleStyle}>
+               {this.props.shot.title}
+             </Text>
+             <Text style={styles.descriptionStyle}>
+              <HTMLView value={this.props.shot.description}
+              onLinkPress={(url) => console.log('clicked link: ', url)}/>
+            </Text>
+           </View>
+         </ParallaxView>
         </View>
       )
   }
@@ -38,14 +42,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  welcome: {
-    fontSize: 20,
+  titleStyle: {
+    fontSize: 16,
     textAlign: 'center',
-    margin: 10,
+    marginTop: 10,
+    fontWeight: "400",
+    color: "#ea4c89",
+    lineHeight: 18
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  descriptionStyle: {
+    fontSize: 13,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
   },
 });

@@ -9,7 +9,9 @@
     "react": "15.1.0",
     "react-native": "0.28.0",
     "react-native-gifted-listview": "git+https://github.com/BelinChung/react-native-gifted-listview.git#a64c4a5",
+    "react-native-htmlview": "^0.5.0",
     "react-native-navbar": "^1.5.0",
+    "react-native-parallax-view": "^2.0.5",
     "react-native-tab-navigator": "^0.3.2",
     "react-native-vector-icons": "^2.0.3"
   }

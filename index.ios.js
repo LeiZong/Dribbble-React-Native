@@ -1,6 +1,4 @@
-import React, {
-    Component
-} from 'react'
+import React, { Component } from 'react'
 
 import {
     Navigator,
@@ -35,34 +33,6 @@ export default class NavigatorComp extends Component {
           return (
                 <ShotDetail {...route.params} navigator={navigator} route={route}/>
             )
-      // case 'about':
-      //     return (
-      //         <AboutView navigator={navigator} route={route}/>
-      //     )
-      // case 'message':
-      //     return (
-      //         <MessageView {...route.params} navigator={navigator} route={route}/>
-      //     )
-      // case 'tweet':
-      //     return (
-      //         <TweetView navigator={navigator} route={route}/>
-      //     )
-      // case 'feedback':
-      //     return (
-      //         <FeedbackView navigator={navigator} route={route}/>
-      //     )
-      // case 'webview':
-      //     return (
-      //         <WebViewView {...route.params} navigator={navigator} route={route}/>
-      //     )
-      // case 'tweetDetails':
-      //     return (
-      //         <TweetDetailsView {...route.params} navigator={navigator} route={route}/>
-      //     )
-      // case 'comment':
-      //     return (
-      //         <CommentView navigator={navigator} route={route}/>
-      //     )
       default:
           break
       }
