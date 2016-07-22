@@ -4,15 +4,39 @@ import {
     StyleSheet,
     View,
     Text,
+    Image,
+    ListView,
+    PixelRatio,
 } from 'react-native'
 
-import NavbarComp from './NavBar'
+import {fetchResources} from './api';
+import NavbarComp from './NavBar';
+import Loading from './Loading';
+
 var ParallaxView = require('react-native-parallax-view');
 var HTMLView = require('react-native-htmlview');
 
 export default class ShotDetail extends Component {
   constructor(props) {
       super(props)
+      this.state = {
+        isLoading: true,
+        dataSource: new ListView.DataSource({
+          rowHasChanged: (row1, row2) => row1 !== row2,}),
+        }
+  }
+
+  componentDidMount() {
+    console.log('did mount did mount');
+    fetchResources(this.props.shot.comments_url).catch((error) => {
+    }).then((responseData) => {
+      console.log('commets comments');
+      console.log(responseData);
+      this.setState({
+                    isLoading: false,
+                    dataSource: this.state.dataSource.cloneWithRows(responseData)
+                })
+    }).done();
   }
 
   render() {
@@ -31,9 +55,50 @@ export default class ShotDetail extends Component {
               onLinkPress={(url) => console.log('clicked link: ', url)}/>
             </Text>
            </View>
+            {this._renderCommentsList()}
          </ParallaxView>
         </View>
       )
+  }
+
+  _renderCommentsList() {
+    console.log(this.state.isLoading);
+      if (this.state.isLoading) {
+        console.log('loading loading');
+        return (<Loading />);
+      } else {
+        console.log('ListView ListView');
+        return (
+          <View style={styles.sectionSpacing}>
+          <View style={styles.separator} />
+          <Text style={styles.heading}>{'  ' + this.props.shot.comments_count + ' Responses'}</Text>
+          <View style={styles.separator} />
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+            automaticallyAdjustContentInsets={false}
+          />
+        </View>);
+      }
+  }
+
+  renderRow(comment) {
+    console.log('comment');
+    console.log(comment);
+    return (
+      <View style={styles.commentContainer}>
+      <Image source={{uri: comment.user.avatar_url}}
+      style={styles.avatar} />
+      <View style={styles.commentRithtContainer}>
+      <Text style={styles.name}>
+      {comment.user.name}
+     </Text>
+      <Text style={styles.comment}>
+       <HTMLView value={comment.body}
+       onLinkPress={(url) => console.log('clicked link: ', url)}/>
+     </Text>
+     </View>
+      </View>);
   }
 
 }
@@ -46,9 +111,38 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginTop: 10,
-    fontWeight: "400",
-    color: "#ea4c89",
+    fontWeight: '400',
+    color: '#ea4c89',
     lineHeight: 18
+  },
+  commentContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      padding: 10,
+      borderColor: '#e1e1e1',
+      borderBottomWidth: 1,
+      alignItems: 'center'
+  },
+  commentRithtContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    marginBottom: 10,
+  },
+  avatar: {
+      backgroundColor: 'gray',
+      width: 36,
+      height: 36,
+      borderRadius: 18,
+      marginRight: 6
+  },
+  name: {
+    color: '#333333',
+    fontSize: 16,
+  },
+  comment: {
+    color: '#ea4c89',
+    fontSize: 13,
+    marginRight: 10,
   },
   descriptionStyle: {
     fontSize: 13,
@@ -57,4 +151,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
   },
-});
+  separator: {
+  height: 1 / PixelRatio.get(),
+  },
+  sectionSpacing: {
+    backgroundColor: '#eeeeee',
+  },
+  heading: {
+    fontWeight: "700",
+    fontSize: 16
+  }
+  });

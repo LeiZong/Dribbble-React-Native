@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 
-import {fetchResources} from './api.js'
+import {fetchResources} from './api'
 var GiftedListView = require('react-native-gifted-listview');
 
 export default class BaseListView extends Component {

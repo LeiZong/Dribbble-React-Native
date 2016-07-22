@@ -1,5 +1,5 @@
 import BaseListView from './BaseListView'
-import {fetchGifShots} from './api.js'
+import {fetchGifShots} from './api'
 
 export default class DefaultShots extends BaseListView {
   _onFetch(page = 1, callback, options) {
