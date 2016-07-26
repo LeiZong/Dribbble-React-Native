@@ -49,15 +49,22 @@ export default class TabBarComp extends Component {
     }
 
     _renderTabItemIcon(tag, selected = false) {
-        tag = selected ? tag + 'Selected' : tag
-        if (selected) {
-          return (
-            <Icon name="dribbble" size={30} color="#ff9630" />
-          )
-        }
+      switch (tag) {
+        case 'Default':
         return (
-          <Icon name="dribbble" size={30} color="#929292" />
-        )
+          <Icon name="dribbble" size={30} color={selected ? "#ff9630" : "#929292"} />)
+          break;
+        case 'Animated':
+        return (
+          <Icon name="glide-g" size={30} color={selected ? "#ff9630" : "#929292"} />)
+          break;
+        case 'Debuts':
+        return (
+          <Icon name="anchor" size={30} color={selected ? "#ff9630" : "#929292"} />)
+          break;
+        default:
+
+      }
     }
 }
 
@@ -72,13 +79,6 @@ const styles = StyleSheet.create({
         marginTop: -2
     },
     selectedTitleStyle: {
-        color: '#ff9630'
-    },
-    tabIcon: {
-        fontSize: 28,
-        color: '#929292',
-    },
-    selectedTabIcon: {
         color: '#ff9630'
     }
 })

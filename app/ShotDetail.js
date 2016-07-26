@@ -27,11 +27,8 @@ export default class ShotDetail extends Component {
   }
 
   componentDidMount() {
-    console.log('did mount did mount');
     fetchResources(this.props.shot.comments_url).catch((error) => {
     }).then((responseData) => {
-      console.log('commets comments');
-      console.log(responseData);
       this.setState({
                     isLoading: false,
                     dataSource: this.state.dataSource.cloneWithRows(responseData)
@@ -62,12 +59,9 @@ export default class ShotDetail extends Component {
   }
 
   _renderCommentsList() {
-    console.log(this.state.isLoading);
       if (this.state.isLoading) {
-        console.log('loading loading');
         return (<Loading />);
       } else {
-        console.log('ListView ListView');
         return (
           <View style={styles.sectionSpacing}>
           <View style={styles.separator} />
