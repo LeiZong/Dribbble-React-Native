@@ -37,8 +37,10 @@ export default class BaseListView extends Component {
              <View style={styles.tweetContainer}>
                  <TouchableHighlight underlayColor='transparent' onPress={this._gotoUserDetails.bind(this, shot)}>
                  <View style={styles.topContainer}>
-                 {shot.team === null ? <Image source={{uri: shot.user.avatar_url}}
-                 style={styles.avatar} /> : <Image source={{uri: shot.team.avatar_url}}
+                 {shot.team === null ? <Image defaultSource={require('../img/avatar.png')}
+                   source={{uri: shot.user.avatar_url}}
+                 style={styles.avatar} /> : <Image defaultSource={require('../img/avatar.png')}
+                 source={{uri: shot.team.avatar_url}}
                  style={styles.avatar} />}
                  {shot.team === null ?
                    <View style={{justifyContent: 'center'}}>

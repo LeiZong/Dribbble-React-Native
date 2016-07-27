@@ -77,11 +77,10 @@ export default class ShotDetail extends Component {
   }
 
   renderRow(comment) {
-    console.log('comment');
-    console.log(comment);
     return (
       <View style={styles.commentContainer}>
-      <Image source={{uri: comment.user.avatar_url}}
+      <Image defaultSource={require('../img/avatar.png')}
+      source={{uri: comment.user.avatar_url}}
       style={styles.avatar} />
       <View style={styles.commentRithtContainer}>
       <Text style={styles.name}>
