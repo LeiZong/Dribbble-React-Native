@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import {
     View,
     Text,
-    Image,
     StyleSheet,
     TouchableOpacity,
     Platform,
@@ -13,7 +12,6 @@ import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 function _renderBarButton(text, handler, icon = false, buttonStyle = {}, buttonTextStyle = {}) {
-    let buttonText = [styles.buttonText, buttonTextStyle]
     if(icon) {
       return (
           <TouchableOpacity
@@ -36,7 +34,6 @@ export default class NavbarComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
         }
     }
 
@@ -68,7 +65,9 @@ export default class NavbarComp extends Component {
     _title() {
         return (
             <View style={styles.title}>
-                <Text style={styles.titleText}>{this.props.route.title ? this.props.route.title : 'Bridddle'}</Text>
+                <Text style={styles.titleText}>
+                {this.props.route.title ? this.props.route.title : 'Bridddle'}
+                </Text>
             </View>
         )
     }
@@ -115,11 +114,4 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center'
   },
-  buttonText: {
-      fontSize: 16,
-      color: '#333'
-  },
-  buttonIconFontText: {
-      fontSize: 26,
-  }
 })

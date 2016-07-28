@@ -1,19 +1,18 @@
-import React, {
-    Component
-} from 'react'
+import React, { Component } from 'react'
 
 import {
     StyleSheet,
-    Text
 } from 'react-native'
 
 import TabNavigator from 'react-native-tab-navigator'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import styleUtils from './Styles'
 
 import DefaultShots from './DefaultShotsView'
 import DebutsShots from './DebutsShotsView'
 import AnimatedShots from './AnimatedShotsView'
+
+const defaultColor = '#929292';
+const selectedColor = '#ff9630';
 
 export default class TabBarComp extends Component {
     constructor(props) {
@@ -52,15 +51,14 @@ export default class TabBarComp extends Component {
       switch (tag) {
         case 'Default':
         return (
-          <Icon name="dribbble" size={30} color={selected ? "#ff9630" : "#929292"} />)
-          break;
+          <Icon name="dribbble" size={30} color={selected ? selectedColor : defaultColor} />)
         case 'Animated':
         return (
-          <Icon name="glide-g" size={30} color={selected ? "#ff9630" : "#929292"} />)
+          <Icon name="glide-g" size={30} color={selected ? selectedColor : defaultColor} />)
           break;
         case 'Debuts':
         return (
-          <Icon name="anchor" size={30} color={selected ? "#ff9630" : "#929292"} />)
+          <Icon name="anchor" size={30} color={selected ? selectedColor : defaultColor} />)
           break;
         default:
 
@@ -70,15 +68,15 @@ export default class TabBarComp extends Component {
 
 const styles = StyleSheet.create({
     sceneStyle: {
-        ...styleUtils.containerBg,
-        flex: 1
+        backgroundColor: '#efeff4',
+        flex: 1,
     },
     titleStyle: {
-        color: '#929292',
+        color: defaultColor,
         fontSize: 12,
-        marginTop: -2
+        marginTop: 0,
     },
     selectedTitleStyle: {
-        color: '#ff9630'
+        color: selectedColor,
     }
 })

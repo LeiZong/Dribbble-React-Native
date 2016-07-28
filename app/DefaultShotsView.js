@@ -6,7 +6,6 @@ export default class DefaultShotsView extends BaseListView {
     fetchDefaultShots(page).catch((error) => {
     })
     .then((responseData) => {
-      console.log(responseData);
       callback(responseData)
     }).done();
  }

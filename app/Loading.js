@@ -9,7 +9,7 @@ import {
 export default class Loading extends Component {
   render() {
       return (
-        <View style={[styles.container, styles.centerText]}>
+        <View style={styles.container}>
           <ActivityIndicator
               animating={this.props.isLoading}
               style={styles.spinner}
@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'center',
-  },
-  centerText: {
     alignItems: 'center',
   },
   spinner: {

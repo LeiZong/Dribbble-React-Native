@@ -34,7 +34,7 @@ export default class BaseListView extends Component {
 
   _renderRowView(shot) {
        return (
-             <View style={styles.tweetContainer}>
+             <View style={styles.shotContainer}>
                  <TouchableHighlight underlayColor='transparent' onPress={this._gotoUserDetails.bind(this, shot)}>
                  <View style={styles.topContainer}>
                  {shot.team === null ? <Image defaultSource={require('../img/avatar.png')}
@@ -62,17 +62,23 @@ export default class BaseListView extends Component {
                          <View style={[styles.bottomCell, styles.bottomTool]}>
                              <Image style={{resizeMode: 'cover'}}
                              source={require('../img/visibility_grey.png')} />
-                             <Text style={styles.bottomToolText}>{' ' + shot.views_count}</Text>
+                             <Text style={styles.bottomToolText}>
+                             {' ' + shot.views_count}
+                             </Text>
                          </View>
                          <View style={[styles.bottomCell, styles.bottomTool]}>
                              <Image style={{resizeMode: 'cover'}}
                              source={require('../img/message_grey.png')} />
-                             <Text style={styles.bottomToolText}>{' ' + shot.comments_count}</Text>
+                             <Text style={styles.bottomToolText}>
+                             {' ' + shot.comments_count}
+                             </Text>
                          </View>
                          <View style={[styles.bottomCell, styles.bottomTool]}>
                              <Image style={{resizeMode: 'cover'}}
                              source={require('../img/favorite_grey.png')} />
-                             <Text style={styles.bottomToolText}>{' ' + shot.likes_count}</Text>
+                             <Text style={styles.bottomToolText}>
+                             {' ' + shot.likes_count}
+                             </Text>
                          </View>
                  </View>
              </View>
@@ -93,14 +99,13 @@ export default class BaseListView extends Component {
     fetchResources(shot.user.shots_url).catch((error) => {
     })
     .then((responseData) => {
-      console.log(responseData);
     }).done();
   }
 }
 
 const listStyles = {
   paginationView: {
-    backgroundColor: '#eee'
+    backgroundColor: '#eeeeee'
   },
   url: {
     color: '#007aff'
@@ -108,7 +113,7 @@ const listStyles = {
 }
 
 const styles = StyleSheet.create({
-  tweetContainer: {
+  shotContainer: {
     backgroundColor: 'white',
     marginTop: 3,
     marginBottom: 7,

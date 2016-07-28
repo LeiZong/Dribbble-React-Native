@@ -64,34 +64,36 @@ export default class ShotDetail extends Component {
       } else {
         return (
           <View style={styles.sectionSpacing}>
-          <View style={styles.separator} />
-          <Text style={styles.heading}>{'  ' + this.props.shot.comments_count + ' Responses'}</Text>
-          <View style={styles.separator} />
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this.renderRow}
-            automaticallyAdjustContentInsets={false}
-          />
-        </View>);
+            <View style={styles.separator} />
+            <Text style={styles.heading}>
+            {'  ' + this.props.shot.comments_count + ' Responses'}
+            </Text>
+            <View style={styles.separator} />
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={this.renderRow}
+              automaticallyAdjustContentInsets={false}
+            />
+         </View>);
       }
   }
 
   renderRow(comment) {
     return (
       <View style={styles.commentContainer}>
-      <Image defaultSource={require('../img/avatar.png')}
-      source={{uri: comment.user.avatar_url}}
-      style={styles.avatar} />
-      <View style={styles.commentRithtContainer}>
-      <Text style={styles.name}>
-      {comment.user.name}
-     </Text>
-      <Text style={styles.comment}>
-       <HTMLView value={comment.body}
-       onLinkPress={(url) => console.log('clicked link: ', url)}/>
-     </Text>
-     </View>
-      </View>);
+        <Image defaultSource={require('../img/avatar.png')}
+        source={{uri: comment.user.avatar_url}}
+        style={styles.avatar} />
+        <View style={styles.commentRithtContainer}>
+          <Text style={styles.name}>
+          {comment.user.name}
+          </Text>
+          <Text style={styles.comment}>
+            <HTMLView value={comment.body}
+            onLinkPress={(url) => console.log('clicked link: ', url)}/>
+          </Text>
+       </View>
+     </View>);
   }
 
 }
@@ -133,9 +135,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   comment: {
-    color: '#ea4c89',
+    color: '#444444',
     fontSize: 13,
     marginRight: 10,
+    marginBottom: 10,
   },
   descriptionStyle: {
     fontSize: 13,
