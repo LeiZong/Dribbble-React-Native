@@ -5,9 +5,7 @@ A [Dribbble](http://dribbble.com) app build with [React Native](https://github.c
 
 # Dribbble app screenshot
 
-![dribbble-1](./Dribbble-1.png)
-![dribbble-1](./Dribbble-2.png)
-![dribbble-1](./Dribbble-3.png)
+![dribbble-screenshot](./Dribbble-All.png)
 
 # How to run it locally
 
